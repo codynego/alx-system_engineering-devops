@@ -8,6 +8,7 @@ while [[ $svar -lt 11 ]];
 do
 	if (( svar == 9))
 	then
+		echo "Best School"
 		echo "Hi"
 	else
 		echo "Best School"
