@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# This script is displaying "Best School" 10 times
+# using while loop
+
+svar=1
+
+while [[ $svar -lt 21 ]];
+do
+	case $svar in
+		4)
+			echo $svar
+			echo "bad luck from China"
+			;;
+		8)
+			echo $svar
+			echo "bad luck from Japan"
+			;;
+		17)
+			echo $svar
+			echo "bad luck from Italy"
+			;;
+		*)
+			echo $svar
+			;;
+	esac
+	((svar++))
+done
