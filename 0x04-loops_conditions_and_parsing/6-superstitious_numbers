@@ -5,22 +5,14 @@ svar=1
 
 while [[ $svar -lt 21 ]];
 do
+	echo $svar
 	case $svar in
 		4)
-			echo $svar
-			echo "bad luck from China"
-			;;
+			echo "bad luck from China";;
 		8)
-			echo $svar
-			echo "bad luck from Japan"
-			;;
+			echo "bad luck from Japan";;
 		17)
-			echo $svar
-			echo "bad luck from Italy"
-			;;
-		*)
-			echo $svar
-			;;
+			echo "bad luck from Italy";;
 	esac
-	((svar++))
+	(( svar++ ))
 done
