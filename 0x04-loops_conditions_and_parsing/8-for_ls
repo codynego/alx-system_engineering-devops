@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# list the file in the current directory
+
+for i in *
+do
+	cut -d'-' -f 2 <<< "$i"
+done
+
