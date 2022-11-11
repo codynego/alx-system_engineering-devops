@@ -3,12 +3,12 @@
 
 svar=1
 
-while [ $svar -lt 11 ]
+while [ "$svar" -lt 11 ]
 do
-	if [ $svar -eq 4 ]
+	if [ "$svar" -eq 4 ]
 	then
 		echo "bad luck"
-	elif [ $svar -eq 8 ]
+	elif [ "$svar" -eq 8 ]
 	then
 		echo "Good luck"
 	else
