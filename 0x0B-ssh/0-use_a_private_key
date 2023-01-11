@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-
-
-# Set the path to the private key
-#KEY=~/.ssh/school
-
 # Connect to the server using the private key and user ubuntu
+
+
 ssh -i ~/.ssh/school -o "IdentitiesOnly yes" -o "User ubuntu" 54.208.229.151
+
