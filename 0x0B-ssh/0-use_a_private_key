@@ -2,7 +2,7 @@
 
 
 # Set the path to the private key
-KEY=~/.ssh/school
+#KEY=~/.ssh/school
 
 # Connect to the server using the private key and user ubuntu
-ssh -i $KEY -o "StrictHostKeyChecking no" ubuntu@54.208.229.151
+ssh -i ~/.ssh/school -o "IdentitiesOnly yes" -o "User ubuntu" 54.208.229.151
