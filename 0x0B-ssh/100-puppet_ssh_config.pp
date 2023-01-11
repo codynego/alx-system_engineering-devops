@@ -1,5 +1,7 @@
-# set up your client SSH configuration file so that you can connect to a server without typing a password
-
+#'''
+# This class configures the SSH client to use the private key located at 
+# ~/.ssh/school, and to refuse to authenticate using a password
+#'''
 class ssh_config {
     file { '~/.ssh/config':
         ensure  => file,
