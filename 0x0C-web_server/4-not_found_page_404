@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+# Update package list
+apt-get update
+
+# Install Nginx
+apt-get install -y nginx
+
+# Create custom 404 page
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+
+# Update Nginx default configuration
+echo "server {
+    listen 80;
+    root /var/www/html;
+    index index.html;
+    server_name _;
+
+    error_page 404 /404.html;
+    location = /404.html {
+        internal;
+    }
+
+    location / {
+        return 404;
+    }
+}
+" > /etc/nginx/sites-available/default
+
+# Test Nginx configuration
+nginx -t
+
+# Reload Nginx service
+service nginx reload
+
