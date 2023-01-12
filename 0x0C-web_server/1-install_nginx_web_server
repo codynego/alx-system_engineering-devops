@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+#install Nginx and configure it
+
+apt-get update
+
+# Install Nginx
+apt-get install -y nginx
+
+# Stop Nginx service
+service nginx stop
+
+# Update Nginx default configuration
+echo "server {
+    listen 80;
+    root /var/www/html;
+    index index.html;
+    server_name _;
+
+    location / {
+        return 200 'Hello World!';
+    }
+}
+" > /etc/nginx/sites-available/default
+
+# Start Nginx service
+service nginx start
+
+# Test Nginx configuration
+curl -sL -w "%{http_code}\\n" "http://localhost/" -o /dev/null
+
