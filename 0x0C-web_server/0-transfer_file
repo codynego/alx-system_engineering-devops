@@ -1,17 +1,15 @@
 #!/usr/bin/env bash
-# Check if all 4 parameters are passed
-
-if [ $# -lt 4 ]; then
-    echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
-    exit 1
+# Transfers a file to a server
+if [[ "${#@}" -lt 4 ]]; then
+	echo 'Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY'
+else
+	PATH_TO_FILE="$1"
+	IP="$2"
+	USERNAME="$3"
+	PATH_TO_SSH_KEY="$4"
+	# shellcheck disable=2088
+	scp -i "$PATH_TO_SSH_KEY" \
+		-o "StrictHostKeyChecking no" \
+		"$PATH_TO_FILE" \
+		"$USERNAME@$IP":'~/'"$(echo "$PATH_TO_FILE" | grep -oE '[^/]+' | tail -n1)"
 fi
-
-# Assign parameters to variables
-path_to_file=$1
-server_ip=$2
-username=$3
-path_to_key=$4
-
-# Transfer the file to the user's home directory on the server
-scp -i "$path_to_key" -o StrictHostKeyChecking=no "$path_to_file" "$username"@"$server_ip":~/
-

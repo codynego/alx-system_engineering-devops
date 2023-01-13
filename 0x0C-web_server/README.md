@@ -1,95 +1,49 @@
-0x0C. Web server
+# Web Server
 
-Background Context
+This project contains tasks for learning about the installation and configuration of a web server (Nginx).
 
+## Tasks To Complete
 
-In this project, some of the tasks will be graded on 2 aspects:
++ [x] 0\. Transfer a file to your server<br/>_**[0-transfer_file](0-transfer_file)**_ contains a Bash script that uses `ssh` to transfers a file from a client (the local system) to a server.
+  + Requirements:
+    + Accepts 4 parameters.
+      1. The path to the file to be transferred.
+      2. The  IP of the server we want to transfer the file to.
+      3. The username `scp` connects with.
+      4. The path to the SSH private key that `scp` uses.
+    + Display `Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY` if less than 3 parameters passed.
+    + `scp` must transfer the file to the user home directory `~/`.
+    + Strict host key checking must be disabled when using `scp`.
 
-Is your web-01 server configured according to requirements
-Does your answer file contain a Bash script that automatically performs commands to configure an Ubuntu machine to fit requirements (meaning without any human intervention)
-For example, if I need to create a file /tmp/test containing the string hello world and modify the configuration of Nginx to listen on port 8080 instead of 80, I can use emacs on my server to create the file and to modify the Nginx configuration file /etc/nginx/sites-enabled/default.
++ [x] 1\. Install nginx web server<br/>_**[1-install_nginx_web_server](1-install_nginx_web_server)**_ contains a Bash script that installs the Nginx web server.
+  + Requirements:
+    + Install `nginx` on your `web-01` server.
+    + Nginx should be listening on port 80.
+    + When querying Nginx at its root `/` with a GET request (requesting a page) using `curl`, it must return a page that contains the string `Hello World`.
+    + As an answer file, write a Bash script that configures a new Ubuntu machine to respect above requirements (this script will be run on the server itself).
+    + You can't use `systemctl` for restarting `nginx`.
 
-But my answer file would contain:
++ [x] 2\. Setup a domain name<br/>_**[2-setup_a_domain_name](2-setup_a_domain_name)**_ contains the domain name registered with [.tech domains](https://get.tech) for the web server.
+  + Requirements:
+    + Provide the domain name only (example: `foobar.tech`), no subdomain (example: `www.foobar.tech`).
+    + Configure your DNS records with an A entry so that your root domain points to your web-01 IP address **Warning: the propagation of your records can take time (~1-2 hours)**.
+    + Go to [your profile](https://alx-intranet.hbtn.io/users/my_profile) and enter your domain in the `Project website url` field.
 
-sylvain@ubuntu cat 88-script_example
-#!/usr/bin/env bash
-# Configuring a server with specification XYZ
-echo hello world > /tmp/test
-sed -i 's/80/8080/g' /etc/nginx/sites-enabled/default
-sylvain@ubuntu
-As you can tell, I am not using emacs to perform the task in my answer file. This exercise is aiming at training you on automating your work. If you can automate tasks that you do manually, you can then automate yourself out of repetitive tasks and focus your energy on something more interesting. For an SRE, that comes very handy when there are hundreds or thousands of servers to manage, the work cannot be only done manually. Note that the checker will execute your script as the root user, you do not need to use the sudo command.
++ [x] 3\. Redirection<br/>_**[3-redirection](3-redirection)**_ contains a Bash script that configures the Nginx server so that `/redirect_me` redirects to another page.
+  + Requirements:
+    + The redirection must be a "301 Moved Permanently".
+    + You answer file should be a Bash script containing commands to automatically configure a Ubuntu machine to respect above requirements.
+    + Using what you did with [1-install_nginx_web_server](1-install_nginx_web_server), write [3-redirection](3-redirection) so that it configures a brand new Ubuntu machine to the requirements asked in this task.
 
-A good Software Engineer is a lazy Software Engineer. 
++ [x] 4\. Not found page 404<br/>_**[4-not_found_page_404](4-not_found_page_404)**_ contains a Bash script that configures the Nginx server to have a custom 404 page that contains the string `Ceci n'est pas une page`.
+  + Requirements:
+    + The page must return an HTTP 404 error code.
+    + The page must contain the string `Ceci n'est pas une page`.
+    + Using what you did with [3-redirection](3-redirection), write [4-not_found_page_404](4-not_found_page_404) so that it configures a brand new Ubuntu machine to the requirements asked in this task.
 
-Tips: to test your answer Bash script, feel free to reproduce the checker environment:
-
-start a Ubuntu 16.04 sandbox
-run your script on it
-see how it behaves
-Resources
-Read or watch:
-
-How the web works
-Nginx
-How to Configure Nginx
-Child process concept page
-Root and sub domain
-HTTP requests
-HTTP redirection
-Not found HTTP response code
-Logs files on Linux
-For reference:
-
-RFC 7231 (HTTP/1.1)
-RFC 7540 (HTTP/2)
-man or help:
-
-scp
-curl0x0C. Web server
-
-Background Context
-
-
-In this project, some of the tasks will be graded on 2 aspects:
-
-Is your web-01 server configured according to requirements
-Does your answer file contain a Bash script that automatically performs commands to configure an Ubuntu machine to fit requirements (meaning without any human intervention)
-For example, if I need to create a file /tmp/test containing the string hello world and modify the configuration of Nginx to listen on port 8080 instead of 80, I can use emacs on my server to create the file and to modify the Nginx configuration file /etc/nginx/sites-enabled/default.
-
-But my answer file would contain:
-
-sylvain@ubuntu cat 88-script_example
-#!/usr/bin/env bash
-# Configuring a server with specification XYZ
-echo hello world > /tmp/test
-sed -i 's/80/8080/g' /etc/nginx/sites-enabled/default
-sylvain@ubuntu
-As you can tell, I am not using emacs to perform the task in my answer file. This exercise is aiming at training you on automating your work. If you can automate tasks that you do manually, you can then automate yourself out of repetitive tasks and focus your energy on something more interesting. For an SRE, that comes very handy when there are hundreds or thousands of servers to manage, the work cannot be only done manually. Note that the checker will execute your script as the root user, you do not need to use the sudo command.
-
-A good Software Engineer is a lazy Software Engineer. 
-
-Tips: to test your answer Bash script, feel free to reproduce the checker environment:
-
-start a Ubuntu 16.04 sandbox
-run your script on it
-see how it behaves
-Resources
-Read or watch:
-
-How the web works
-Nginx
-How to Configure Nginx
-Child process concept page
-Root and sub domain
-HTTP requests
-HTTP redirection
-Not found HTTP response code
-Logs files on Linux
-For reference:
-
-RFC 7231 (HTTP/1.1)
-RFC 7540 (HTTP/2)
-man or help:
-
-scp
-curl
++ [x] 5\. Install Nginx web server (w/ Puppet)<br/>_**[7-puppet_install_nginx_web_server.pp](7-puppet_install_nginx_web_server.pp)**_ installs and configures an Nginx server using Puppet instead of Bash. It also includes resources in the manifest to perform a 301 redirect when querying /redirect_me.
+  + Requirements:
+    + Nginx should be listening on port 80.
+    + When querying Nginx at its root `/` with a GET request (requesting a page) using `curl`, it must return a page that contains the string `Hello World`.
+    + The redirection must be a "301 Moved Permanently".
+    + Your answer file should be a Puppet manifest containing commands to automatically configure an Ubuntu machine to respect above requirements.

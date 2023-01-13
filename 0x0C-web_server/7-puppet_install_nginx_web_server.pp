@@ -36,15 +36,20 @@ file { 'Nginx server config file':
 "server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
+
 	root /var/www/html;
 	index index.html index.htm index.nginx-debian.html;
+
 	server_name _;
+
 	location / {
 		try_files \$uri \$uri/ =404;
 	}
+
 	if (\$request_filename ~ redirect_me){
 		rewrite ^ https://sketchfab.com/bluepeno/models permanent;
 	}
+
 	error_page 404 /404.html;
 	location = /404.html {
 		root /var/www/error/;
@@ -57,4 +62,3 @@ exec { 'Start the server':
   command => 'service nginx restart',
   path    => '/usr/bin:/usr/sbin:/bin'
 }
-
