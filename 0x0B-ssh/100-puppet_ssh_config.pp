@@ -1,17 +1,16 @@
-#'''
-# This class configures the SSH client to use the private key located at 
-# ~/.ssh/school, and to refuse to authenticate using a password
-#'''
-class ssh_config {
-    file { '~/.ssh/config':
-        ensure  => file,
-        mode    => '0600',
-        owner   => 'root',
-        group   => 'root',
-        content => "Host *
-          IdentityFile ~/.ssh/school
-          PubkeyAuthentication yes
-          PasswordAuthentication no"
-    }
+# Seting up my client config file
+include stdlib
+
+file_line { 'Turn off passwd auth':
+  ensure => present,
+  path   => '/etc/ssh/ssh_config',
+  line   => '    PasswordAuthentication no',
+  replace => true,
 }
 
+file_line { 'Delare identity file':
+  ensure => present,
+  path   => '/etc/ssh/ssh_config',
+  line   => '     IdentityFile ~/.ssh/school',
+  replace => true,
+}
