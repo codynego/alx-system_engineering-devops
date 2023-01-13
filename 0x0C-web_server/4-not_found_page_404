@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# create a 404 page
+
+
+apt-get update
+
+# Install Nginx
+apt-get install -y nginx
 
 # Create custom 404 page
 echo "Ceci n'est pas une page" > /var/www/html/404.html
