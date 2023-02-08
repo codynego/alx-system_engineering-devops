@@ -11,30 +11,26 @@ import sys
 base_url = 'https://jsonplaceholder.typicode.com'
 
 if __name__ == "__main__":
-    
+
     user_id = sys.argv[1]
 
     # get user info e.g https://jsonplaceholder.typicode.com/users/1/
     user_url = '{}/users?id={}'.format(base_url, user_id)
-    
     response = requests.get(user_url)
     dict_response = json.loads(response.text)
-    
     name = dict_response[0].get('name')
-    
     tasks_url = '{}/todos?userId={}'.format(base_url, user_id)
     task_response = requests.get(tasks_url)
     task_data = json.loads(task_response.text)
-    total_task = len(task_data)
+    total = len(task_data)
     completed = 0
     completed_task = []
-    
     for task in task_data:
-        if task.get('completed') == True:
+        if task.get('completed'):
             completed += 1
             completed_task.append(task)
 
-    print("Employee {} is done with task({}/{}):"
-            .format(name, completed, total_task))
+    print(f"Employee {name} is done with task({completed}/{total}):")
+
     for task in completed_task:
         print("\t {}".format(task.get('title')))
